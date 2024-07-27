@@ -1,5 +1,5 @@
 {
-    "website_name": "LielXD CS2 Server",
+    "website_name": "Corujao Quest Lan House",
     "invert_direction": true,
     "error": {
         "code": "שגיאה {{code}}!",
@@ -12,8 +12,8 @@
     "login": {
         "header": "שרת קונטר סטרייק 2 - היכנסו עכשיו",
         "titles": [
-            {"name": "CS2.LIELXD.COM", "hover": "היכנסו לשרת הריטייק", "link": "steam://connect/34.165.48.66:27015?appid=730"},
-            {"name": "CS2.LIELXD.COM", "hover": "היכנסו לשרת הסארף", "link": "steam://connect/34.165.48.66:27016?appid=730"}
+            {"name": "Corujao Quest Lan House", "hover": "היכנסו לשרת הריטייק", "link": "steam://connect/34.165.48.66:27015?appid=730"},
+            {"name": "Corujao Quest Lan House", "hover": "היכנסו לשרת הסארף", "link": "steam://connect/34.165.48.66:27016?appid=730"}
         ],
         "footer": "בבקשה התחברו דרך Steam בכדי להמשיך.",
         "button": "התחברות עם Steam"

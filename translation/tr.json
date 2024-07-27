@@ -1,5 +1,5 @@
 {
-    "website_name": "LielXD CS2 Server",
+    "website_name": "Corujao Quest Lan House",
     "invert_direction": false,
     "error": {
         "code": "Bir hata oluştu {{code}}!",
@@ -12,8 +12,8 @@
     "login": {
         "header": "Counter Strike 2 Server - Połącz teraz:",
         "titles": [
-            {"name": "CS2.LIELXD.COM", "hover": "Retake Sunucusuna Bağlan", "link": "steam://connect/34.165.48.66:27015?appid=730"},
-            {"name": "CS2.LIELXD.COM", "hover": "Surf Sunucusuna Bağlan", "link": "steam://connect/34.165.48.66:27016?appid=730"}
+            {"name": "Corujao Quest Lan House", "hover": "Retake Sunucusuna Bağlan", "link": "steam://connect/34.165.48.66:27015?appid=730"},
+            {"name": "Corujao Quest Lan House", "hover": "Surf Sunucusuna Bağlan", "link": "steam://connect/34.165.48.66:27016?appid=730"}
         ],
         "footer": "lütfen devam etmek için steam üzerinden giriş yapın.",
         "button": "Steam ile Giriş Yap"

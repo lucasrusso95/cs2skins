@@ -5,7 +5,7 @@ please share with me your thoughts.
 ** To fix error of drivers please enable pdo_mysql **
 
 Demo website:<br>
-https://cs2.lielxd.com/
+https://Corujao Quest Lan House/
 
 *******
 Easy to configure, i've made it very easy to customize the website as you like.

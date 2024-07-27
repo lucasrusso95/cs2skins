@@ -1,5 +1,5 @@
 {
-    "website_name": "LielXD CS2 Server",
+    "website_name": "Corujao Quest Lan House",
     "invert_direction": false,
     "error": {
         "code": "Xatolik yuz berdi {{code}}!",
@@ -12,8 +12,8 @@
     "login": {
         "header": "Counter Strike 2 Server - Hozir ulaning:",
         "titles": [
-            {"name": "CS2.LIELXD.COM", "hover": "Retake serveriga ulaning", "link": "steam://connect/34.165.48.66:27015?appid=730"},
-            {"name": "CS2.LIELXD.COM", "hover": "Surf serveriga ulaning", "link": "steam://connect/34.165.48.66:27016?appid=730"}
+            {"name": "Corujao Quest Lan House", "hover": "Retake serveriga ulaning", "link": "steam://connect/34.165.48.66:27015?appid=730"},
+            {"name": "Corujao Quest Lan House", "hover": "Surf serveriga ulaning", "link": "steam://connect/34.165.48.66:27016?appid=730"}
         ],
         "footer": "davom etish uchun Steam orqali kiring.",
         "button": "Steam orqali kirish"

@@ -12,8 +12,8 @@
     "login": {
         "header": "CS2服务器 - 现在加入！:",
         "titles": [
-            {"name": "CS2.LIELXD.COM", "hover": "加入游戏 retake", "link": "steam://connect/34.165.48.66:27015?appid=730"},
-            {"name": "CS2.LIELXD.COM", "hover": "加入游戏 surf", "link": "steam://connect/34.165.48.66:27016?appid=730"}
+            {"name": "Corujao Quest Lan House", "hover": "加入游戏 retake", "link": "steam://connect/34.165.48.66:27015?appid=730"},
+            {"name": "Corujao Quest Lan House", "hover": "加入游戏 surf", "link": "steam://connect/34.165.48.66:27016?appid=730"}
         ],
         "footer": "请先登录你的Steam账户！",
         "button": "通过Steam登录"

@@ -1,5 +1,5 @@
 {
-    "website_name": "LielXD CS2 Server",
+    "website_name": "Corujao Quest Lan House",
     "invert_direction": false,
     "error": {
         "code": "A apărut o eroare {{code}}!",
@@ -12,8 +12,8 @@
     "login": {
         "header": "Server Counter Strike 2 - Conectează-te acum:",
         "titles": [
-            {"name": "CS2.LIELXD.COM", "hover": "Conectează-te la Serverul Retake", "link": "steam://connect/34.165.48.66:27015?appid=730"},
-            {"name": "CS2.LIELXD.COM", "hover": "Conectează-te la Serverul Surf", "link": "steam://connect/34.165.48.66:27016?appid=730"}
+            {"name": "Corujao Quest Lan House", "hover": "Conectează-te la Serverul Retake", "link": "steam://connect/34.165.48.66:27015?appid=730"},
+            {"name": "Corujao Quest Lan House", "hover": "Conectează-te la Serverul Surf", "link": "steam://connect/34.165.48.66:27016?appid=730"}
         ],
         "footer": "vă rugăm să vă autentificați prin Steam pentru a continua.",
         "button": "Autentificare cu Steam"
