@@ -26,6 +26,7 @@
     </div>
 
     <form action="includes/authorize.php" method="POST" onsubmit="document.getElementById('loading').setAttribute('data-loading', true);">
+        <div><img src="images/foto-chopps.png" /></div>
         <h2><?= $translations->login->header; ?></h2>
         <h1><a title="<?= $translations->login->titles[$title_num]->hover; ?>" href="<?= $translations->login->titles[$title_num]->link; ?>"><?= $translations->login->titles[$title_num]->name; ?></a></h1>
         <h3><?= $translations->login->footer; ?></h3>
