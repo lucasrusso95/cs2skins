@@ -4,7 +4,6 @@ form {
     display: grid;
     place-items: center;
     align-content: center;
-    background: linear-gradient(45deg, black, var(--main-color));
     color: white;
     font-weight: lighter;
 }
