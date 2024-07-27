@@ -10,12 +10,12 @@
         "button": "Return to Website"
     },
     "login": {
-        "header": "Counter Strike 2 Server - Connect now:",
+        "header": "",
         "titles": [
             {"name": "CORUJAO QUEST LAN HOUSE", "hover": "Connect to Retake Server", "link": "steam://connect/34.165.48.66:27015?appid=730"},
             {"name": "CORUJAO QUEST LAN HOUSE", "hover": "Connect to Surf Server", "link": "steam://connect/34.165.48.66:27016?appid=730"}
         ],
-        "footer": "please login through steam to continue.",
+        "footer": "VOU TE SCAMAR!!!",
         "button": "Login with steam"
     },
     "skins": {
