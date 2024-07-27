@@ -27,6 +27,7 @@ h1 {
 
 h1 a {
     background: none;
+    color: #000;
     text-decoration: none;
     transition: .5s;
 }
@@ -44,6 +45,7 @@ h2 {
 h3 {
     color: #000;
 }
+
 
 @media (width <= 700px) {
     h1 {
