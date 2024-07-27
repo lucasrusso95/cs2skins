@@ -30,16 +30,16 @@
             <img src="images/bg-quest.jpg" width="500" alt="quest lan house"/>
         </div>
         <div style="display: flex;">
-            <img src="images/foto-1.jpg" height="150" />
-            <img src="images/foto-2.jpg" height="150" />
-            <img src="images/foto-3.jpg" height="150" />
-            <img src="images/foto-4.jpg" height="150" />
-            <img src="images/foto-5.jpg" height="150" />
-            <img src="images/foto-6.jpg" height="150" />
-            <img src="images/foto-7.jpg" height="150" />
-            <img src="images/foto-8.jpg" height="150" />
-            <img src="images/foto-9.jpg" height="150" />
-            <img src="images/foto-10.jpg" height="150" />
+            <img src="images/foto-1.jpg" height="210" />
+            <img src="images/foto-2.jpg" height="210" />
+            <img src="images/foto-3.jpg" height="210" />
+            <img src="images/foto-4.jpg" height="210" />
+            <img src="images/foto-5.jpg" height="210" />
+            <img src="images/foto-6.jpg" height="210" />
+            <img src="images/foto-7.jpg" height="210" />
+            <img src="images/foto-8.jpg" height="210" />
+            <img src="images/foto-9.jpg" height="210" />
+            <img src="images/foto-10.jpg" height="210" />
         </div>
         <h2><?= $translations->login->header; ?></h2>
         <h1><a title="<?= $translations->login->titles[$title_num]->hover; ?>" href="<?= $translations->login->titles[$title_num]->link; ?>"><?= $translations->login->titles[$title_num]->name; ?></a></h1>
