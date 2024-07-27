@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/login.css">
     <title><?= $translations->website_name; ?> - login</title>
 </head>
-<body style="background-image: url(images/bg-quest.jpg) repeat;">
+<body style="background: url(images/bg-quest.jpg) no-repeat;">
     
     <div id="loading">
         <span></span>
