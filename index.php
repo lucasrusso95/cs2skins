@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/login.css">
     <title><?= $translations->website_name; ?> - login</title>
 </head>
-<body style="background: url(images/bg-quest.jpg) no-repeat;">
+<body>
     
     <div id="loading">
         <span></span>
@@ -27,16 +27,19 @@
 
     <form action="includes/authorize.php" method="POST" onsubmit="document.getElementById('loading').setAttribute('data-loading', true);">
         <div style="display: flex;">
-            <img src="images/foto-1.jpg" width="200" />
-            <img src="images/foto-2.jpg" width="200" />
-            <img src="images/foto-3.jpg" width="200" />
-            <img src="images/foto-4.jpg" width="200" />
-            <img src="images/foto-5.jpg" width="200" />
-            <img src="images/foto-6.jpg" width="200" />
-            <img src="images/foto-7.jpg" width="200" />
-            <img src="images/foto-8.jpg" width="200" />
-            <img src="images/foto-9.jpg" width="200" />
-            <img src="images/foto-10.jpg" width="200" />
+            <img src="images/bg-quest.jpg" alt="quest lan house"/>
+        </div>
+        <div style="display: flex;">
+            <img src="images/foto-1.jpg" height="200" />
+            <img src="images/foto-2.jpg" height="200" />
+            <img src="images/foto-3.jpg" height="200" />
+            <img src="images/foto-4.jpg" height="200" />
+            <img src="images/foto-5.jpg" height="200" />
+            <img src="images/foto-6.jpg" height="200" />
+            <img src="images/foto-7.jpg" height="200" />
+            <img src="images/foto-8.jpg" height="200" />
+            <img src="images/foto-9.jpg" height="200" />
+            <img src="images/foto-10.jpg" height="200" />
         </div>
         <h2><?= $translations->login->header; ?></h2>
         <h1><a title="<?= $translations->login->titles[$title_num]->hover; ?>" href="<?= $translations->login->titles[$title_num]->link; ?>"><?= $translations->login->titles[$title_num]->name; ?></a></h1>
