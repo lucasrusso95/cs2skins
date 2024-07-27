@@ -29,14 +29,14 @@ $Website_Settings = [
 ];
 
 // Write here your steam api key, get one from here: https://steamcommunity.com/dev/apikey.
-$SteamAPI_KEY = '';
+$SteamAPI_KEY = '4E62ACEB4FE925A4A3F0253F25E27D0F';
 
 // Write here your database login details.
 $DatabaseInfo = [
-    'hostname' => '',
-    'database' => '',
-    'username' => '',
-    'password' => '',
+    'hostname' => '45.179.91.24',
+    'database' => 'sqla2322',
+    'username' => 'sqla2322',
+    'password' => '4b1e63xLAw',
     'port' => '3306'
 ];
 
