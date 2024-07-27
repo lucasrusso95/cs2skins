@@ -26,7 +26,7 @@
     </div>
 
     <form action="includes/authorize.php" method="POST" onsubmit="document.getElementById('loading').setAttribute('data-loading', true);">
-        <div style="display: flex;">
+        <div style="display: flex; margin-bottom: 40px;">
             <img src="images/bg-quest.jpg" width="500" alt="quest lan house"/>
         </div>
         <div style="display: flex;">
