@@ -28,7 +28,10 @@
                 <img src="images/foto-9.jpg" width="210" />
                 <img src="images/foto-10.jpg" width="210" />
             </div>
-            <?php loginbutton(); ?>
+            <div class="bg-primary">
+                <h2>To choose weapon paints loadout, you need to</h2>
+                <?php loginbutton(); ?>
+            </div>
         </div>
     </body>
 </html>
