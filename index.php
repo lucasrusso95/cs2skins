@@ -54,9 +54,7 @@ if (isset($_SESSION['steamid'])) {
 
 	<?php
 	if (!isset($_SESSION['steamid'])) {
-		echo "<div class='bg-primary'><h2>To choose weapon paints loadout, you need to ";
-		loginbutton("rectangle");
-		echo "</h2></div>";
+		include 'home.php';
 	} else {
 		echo "<div class='bg-primary'><h2>Your current weapon skin loadout <a class='btn btn-danger' href='{$_SERVER['PHP_SELF']}?logout'>Logout</a></h2> </div>";
 		echo "<div class='card-group mt-2'>";
