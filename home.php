@@ -14,7 +14,7 @@
     <body>
         <div>
             <div style="display: flex;justify-content: center;margin: 40px 0;">
-                <img src="images/bg-quest.jpg" width="500" alt="quest lan house"/>
+                <img src="images/bg-quest.jpg" width="500" alt="quest lan house" style="border-radius: 25px;" />
             </div>
             <div style="display: flex; gap: 20px; flex-wrap: wrap; margin: 0 20px;">
                 <img src="images/foto-1.jpg" height="200" style="border-radius: 100%;" />
