@@ -15,12 +15,21 @@ if (isset($_SESSION['steamid'])) {
 	$selectedSkins = UtilsClass::getSelectedSkins($querySelected);
 	$selectedKnife = $db->select("SELECT * FROM `wp_player_knife` WHERE `wp_player_knife`.`steamid` = :steamid", ["steamid" => $steamid]);
 	$knifes = UtilsClass::getKnifeTypes();
+	$gloves = UtilsClass::getGloveTypes();
+	$selectedGlove = $db->select("SELECT * FROM `wp_player_gloves` WHERE `wp_player_gloves`.`steamid` = :steamid", ["steamid" => $steamid]);
 
 	if (isset($_POST['forma'])) {
 		$ex = explode("-", $_POST['forma']);
 
 		if ($ex[0] == "knife") {
 			$db->query("INSERT INTO `wp_player_knife` (`steamid`, `knife`) VALUES(:steamid, :knife) ON DUPLICATE KEY UPDATE `knife` = :knife", ["steamid" => $steamid, "knife" => $knifes[$ex[1]]['weapon_name']]);
+		} else if ($ex[0] == "glove") {
+			$db->query("INSERT INTO `wp_player_gloves` (`steamid`, `weapon_defindex`) VALUES(:steamid, :weapon_defindex) ON DUPLICATE KEY UPDATE `weapon_defindex` = :weapon_defindex", ["steamid" => $steamid, "weapon_defindex" => $ex[1]]);
+			if (array_key_exists($ex[1], $selectedSkins)) {
+				$db->query("UPDATE wp_player_skins SET weapon_paint_id = :weapon_paint_id WHERE steamid = :steamid AND weapon_defindex = :weapon_defindex", ["steamid" => $steamid, "weapon_defindex" => $ex[1], "weapon_paint_id" => $ex[2]]);
+			} else {
+				$db->query("INSERT INTO wp_player_skins (`steamid`, `weapon_defindex`, `weapon_paint_id`) VALUES (:steamid, :weapon_defindex, :weapon_paint_id)", ["steamid" => $steamid, "weapon_defindex" => $ex[1], "weapon_paint_id" => $ex[2]]);
+			}
 		} else {
 			if (array_key_exists($ex[1], $skins[$ex[0]]) && isset($_POST['wear']) && $_POST['wear'] >= 0.00 && $_POST['wear'] <= 1.00 && isset($_POST['seed'])) {
 				$wear = floatval($_POST['wear']); // wear
@@ -59,6 +68,59 @@ if (isset($_SESSION['steamid'])) {
 		echo "<div class='bg-primary'><h2>Your current weapon skin loadout <a class='btn btn-danger' href='{$_SERVER['PHP_SELF']}?logout'>Logout</a></h2> </div>";
 		echo "<div class='card-group mt-2'>";
 	?>
+
+		<div class="col-sm-2">
+			<div class="card text-center mb-3 border border-primary">
+				<div class="card-body">
+					<?php
+					$actualGlove = $gloves[0];
+					if ($selectedGlove != null)
+					{
+						$selectedGloveSkin = $db->select("SELECT * FROM `wp_player_skins` WHERE `steamid` = :steamid AND `weapon_defindex` = :weapon_defindex", ["steamid" => $steamid, "weapon_defindex" => $selectedGlove[0]['weapon_defindex']]);
+						$foundGlove = null;
+
+						foreach ($gloves as $glove) {
+							if (isset($glove['gloves']) && is_array($glove['gloves'])) {
+								foreach ($glove['gloves'] as $individualGlove) {
+									if ($individualGlove['paint'] == $selectedGloveSkin[0]['weapon_paint_id']) {
+										$foundGlove = $individualGlove;
+										break 2;
+									}
+								}
+							}
+						}
+
+						$actualGlove = $foundGlove;
+					}
+
+					echo "<div class='card-header'>";
+					echo "<h6 class='card-title item-name'>Glove type</h6>";
+					echo "<h5 class='card-title item-name'>{$actualGlove["paint_name"]}</h5>";
+					echo "</div>";
+					echo "<img src='{$actualGlove["image"]}' class='skin-image'>";
+					?>
+				</div>
+				<div class="card-footer">
+					<form action="" method="POST">
+						<select name="forma" class="form-control select" onchange="this.form.submit()" class="SelectWeapon">
+							<option disabled>Select glove</option>
+							<?php
+							foreach ($gloves as $gloveGroup) {
+								echo "<optgroup label=\"{$gloveGroup['paint_name']}\">";
+
+								foreach ($gloveGroup['gloves'] as $glove) {
+									$selected = ($actualGlove['paint'] == $glove['paint']) ? "selected" : "";
+									echo "<option {$selected} value=\"glove-{$glove['weapon_defindex']}-{$glove['paint']}\">{$glove['paint_name']}</option>";
+								}
+
+								echo "</optgroup>";
+							}
+							?>
+						</select>
+					</form>
+				</div>
+			</div>
+		</div>
 
 		<div class="col-sm-2">
 			<div class="card text-center mb-3 border border-primary">

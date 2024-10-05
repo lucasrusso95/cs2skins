@@ -17,6 +17,41 @@ class UtilsClass
         return $skins;
     }
 
+    public static function getGlovesFromJson(): array
+    {
+        $skins = [];
+        $json = json_decode(file_get_contents(__DIR__ . "/../data/gloves.json"), true);
+
+        return $json;
+    }
+
+    public static function getGloveTypes(): array
+    {
+        $gloves = self::getGlovesFromJson();
+        $uniqueGloves = [];
+    
+        foreach ($gloves as &$glove) {
+            if (isset($glove['weapon_defindex'])) {   
+
+                $weaponDefIndex = $glove['weapon_defindex'];
+
+                if (!isset($uniqueGloves[$weaponDefIndex])) {
+                    $uniqueGloves[$weaponDefIndex] = [
+                        'weapon_defindex' => $weaponDefIndex,
+                        'paint_name' => rtrim(explode("|", $glove['paint_name'])[0]),
+                        'image_url' => $glove['image_url'],
+                        'paint' => $glove['paint'],
+                        'gloves' => []
+                    ];
+                }
+    
+                $uniqueGloves[$weaponDefIndex]['gloves'][] = $glove;
+            }
+        }
+
+        return array_values($uniqueGloves);
+    }
+
     public static function getWeaponsFromArray()
     {
         $weapons = [];
