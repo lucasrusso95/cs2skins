@@ -70,7 +70,7 @@ if (isset($_SESSION['steamid'])) {
 	?>
 
 		<div class="col-sm-2">
-			<div class="card text-center mb-3 border border-primary">
+			<div class="card text-center mb-3 border border-primary" style="height: 330px;">
 				<div class="card-body">
 					<?php
 					$actualGlove = $gloves[0];
@@ -123,7 +123,7 @@ if (isset($_SESSION['steamid'])) {
 		</div>
 
 		<div class="col-sm-2">
-			<div class="card text-center mb-3 border border-primary">
+			<div class="card text-center mb-3 border border-primary" style="height: 330px;">
 				<div class="card-body">
 					<?php
 					$actualKnife = $knifes[0];
