@@ -17,6 +17,8 @@ if (isset($_SESSION['steamid'])) {
 	$knifes = UtilsClass::getKnifeTypes();
 	$gloves = UtilsClass::getGloveTypes();
 	$selectedGlove = $db->select("SELECT * FROM `wp_player_gloves` WHERE `wp_player_gloves`.`steamid` = :steamid", ["steamid" => $steamid]);
+	$teamAgents = UtilsClass::getAgentTypes();
+	$selectedAgents = $db->select("SELECT * FROM `wp_player_agents` WHERE `wp_player_agents`.`steamid` = :steamid", ["steamid" => $steamid]);
 
 	if (isset($_POST['forma'])) {
 		$ex = explode("-", $_POST['forma']);
@@ -30,6 +32,30 @@ if (isset($_SESSION['steamid'])) {
 			} else {
 				$db->query("INSERT INTO wp_player_skins (`steamid`, `weapon_defindex`, `weapon_paint_id`) VALUES (:steamid, :weapon_defindex, :weapon_paint_id)", ["steamid" => $steamid, "weapon_defindex" => $ex[1], "weapon_paint_id" => $ex[2]]);
 			}
+		} else if ($ex[0] == "agent") {
+
+			if ($ex[1] === 'agent_ct') {
+
+				$db->query("INSERT INTO `wp_player_agents` (`steamid`, `agent_ct`) 
+				VALUES (:steamid, :agent_ct) 
+				ON DUPLICATE KEY UPDATE `agent_ct` = :agent_ct", 
+				[
+					"steamid" => $steamid, 
+					"agent_ct" => $ex[2],
+				]);
+
+			} else {
+			
+				$db->query("INSERT INTO `wp_player_agents` (`steamid`, `agent_t`) 
+				VALUES (:steamid, :agent_t) 
+				ON DUPLICATE KEY UPDATE `agent_t` = :agent_t", 
+				[
+					"steamid" => $steamid, 
+					"agent_t" => $ex[2] 
+				]);
+
+			}
+
 		} else {
 			if (array_key_exists($ex[1], $skins[$ex[0]]) && isset($_POST['wear']) && $_POST['wear'] >= 0.00 && $_POST['wear'] <= 1.00 && isset($_POST['seed'])) {
 				$wear = floatval($_POST['wear']); // wear
@@ -69,6 +95,59 @@ if (isset($_SESSION['steamid'])) {
 		echo "<div class='card-group mt-2'>";
 	?>
 
+<?php foreach ($teamAgents as $teamAgent): ?>
+    <div class="col-sm-2">
+        <div class="card text-center mb-3 border border-primary" style="height: 330px;">
+            <div class="card-body">
+                <?php
+                $teamAgentKey = ($teamAgent['team'] === 3) ? 'agent_ct' : 'agent_t';
+                $teamAgentTitle = ($teamAgent['team'] === 3) ? 'CT' : 'TR';
+
+				$actualAgent = $teamAgent['agents'][0];
+				if ($selectedAgents[0][$teamAgentKey] != null)
+				{
+					$foundAgent = null;
+
+					if (isset($teamAgent['agents']) && is_array($teamAgent['agents'])) {
+						foreach ($teamAgent['agents'] as $individualAgent) {
+							if ($individualAgent['model'] == $selectedAgents[0][$teamAgentKey]) {
+								$foundAgent = $individualAgent;
+								break;
+							}
+						}
+					}
+
+					$actualAgent = $foundAgent;
+				}
+
+				echo "<div class='card-header'>";
+				echo "<h6 class='card-title item-name'>Agent " . $teamAgentTitle . " Type</h6>";
+				echo "<h5 class='card-title item-name'>{$actualAgent["agent_name"]}</h5>";
+				echo "</div>";
+				if ($actualAgent["image"] != null) {
+					echo "<img src='{$actualAgent["image"]}' class='skin-image'>";
+				}
+   
+                ?>
+            </div>
+            <div class="card-footer">
+                <form action="" method="POST">
+                    <select name="forma" class="form-control select" onchange="this.form.submit()" class="SelectWeapon">
+                        <option disabled>Select agent</option>
+                        <?php
+                        foreach ($teamAgent['agents'] as $agentKey => $agent) {
+                            $selected = ($actualAgent && $actualAgent['model'] == $agent['model']) ? "selected" : "";
+							$agentModel = $agent['model'];
+                            echo "<option {$selected} value=\"agent-{$teamAgentKey}-{$agentModel}\">{$agent['agent_name']}</option>";
+                        }
+                        ?>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
 		<div class="col-sm-2">
 			<div class="card text-center mb-3 border border-primary" style="height: 330px;">
 				<div class="card-body">
@@ -77,24 +156,24 @@ if (isset($_SESSION['steamid'])) {
 					if ($selectedGlove != null)
 					{
 						$selectedGloveSkin = $db->select("SELECT * FROM `wp_player_skins` WHERE `steamid` = :steamid AND `weapon_defindex` = :weapon_defindex", ["steamid" => $steamid, "weapon_defindex" => $selectedGlove[0]['weapon_defindex']]);
-						$foundGlove = null;
+						$foundAgent = null;
 
 						foreach ($gloves as $glove) {
 							if (isset($glove['gloves']) && is_array($glove['gloves'])) {
-								foreach ($glove['gloves'] as $individualGlove) {
-									if ($individualGlove['paint'] == $selectedGloveSkin[0]['weapon_paint_id']) {
-										$foundGlove = $individualGlove;
+								foreach ($glove['gloves'] as $individualAgent) {
+									if ($individualAgent['paint'] == $selectedGloveSkin[0]['weapon_paint_id']) {
+										$foundAgent = $individualAgent;
 										break 2;
 									}
 								}
 							}
 						}
 
-						$actualGlove = $foundGlove;
+						$actualGlove = $foundAgent;
 					}
 
 					echo "<div class='card-header'>";
-					echo "<h6 class='card-title item-name'>Glove type</h6>";
+					echo "<h6 class='card-title item-name'>Glove Type</h6>";
 					echo "<h5 class='card-title item-name'>{$actualGlove["paint_name"]}</h5>";
 					echo "</div>";
 					echo "<img src='{$actualGlove["image"]}' class='skin-image'>";
@@ -138,7 +217,7 @@ if (isset($_SESSION['steamid'])) {
 					}
 
 					echo "<div class='card-header'>";
-					echo "<h6 class='card-title item-name'>Knife type</h6>";
+					echo "<h6 class='card-title item-name'>Knife Type</h6>";
 					echo "<h5 class='card-title item-name'>{$actualKnife["paint_name"]}</h5>";
 					echo "</div>";
 					echo "<img src='{$actualKnife["image_url"]}' class='skin-image'>";

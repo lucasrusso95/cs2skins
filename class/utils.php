@@ -17,17 +17,27 @@ class UtilsClass
         return $skins;
     }
 
-    public static function getGlovesFromJson(): array
+    public static function getDataFromJson(string $fileName): array
     {
         $skins = [];
-        $json = json_decode(file_get_contents(__DIR__ . "/../data/gloves.json"), true);
+        $filePath = __DIR__ . "/../data/" . $fileName;
 
+        if (!file_exists($filePath)) {
+            throw new Exception("File not found: " . $filePath);
+        }
+    
+        $json = json_decode(file_get_contents($filePath), true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            throw new Exception("Error decoding JSON: " . json_last_error_msg());
+        }
+    
         return $json;
     }
 
     public static function getGloveTypes(): array
     {
-        $gloves = self::getGlovesFromJson();
+        $gloves = self::getDataFromJson('gloves.json');
         $uniqueGloves = [];
     
         foreach ($gloves as &$glove) {
@@ -50,6 +60,26 @@ class UtilsClass
         }
 
         return array_values($uniqueGloves);
+    }
+
+    public static function getAgentTypes(): array
+    {
+        $agents = self::getDataFromJson('agents.json');
+        $teamAgents = [];
+
+        foreach ($agents as $agent) {
+            if (isset($agent['team'])) {
+                $teamId = $agent['team'];
+                if (!isset($teamAgents[$teamId])) {
+                    $teamAgents[$teamId] = [
+                        'team' => $teamId,
+                        'agents' => []
+                    ];
+                }
+                $teamAgents[$teamId]['agents'][] = $agent;
+            }
+        }
+        return array_values($teamAgents);
     }
 
     public static function getWeaponsFromArray()
